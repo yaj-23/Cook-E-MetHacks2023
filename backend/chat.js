@@ -2,49 +2,49 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-require('dotenv').config()
+require("dotenv").config();
 const apiKey = process.env.API_KEY;
 
-const {Configuration, OpenAIApi} = require("openai");
+const { Configuration, OpenAIApi } = require("openai");
 
 const config = new Configuration({
-    apiKey: apiKey,
+  apiKey: apiKey,
+});
 
-})
-
-const openai = new OpenAIApi(config);
+// const openai = new OpenAIApi(config);
+const cohere = require("cohere-ai");
+cohere.init("EzBiLc0Koknce3Rm5Ln7RVn8XPu7kaxMkpG7bQZl");
 
 //setup Server
-const app  = new express();
+const app = new express();
 app.use(bodyParser.json());
 app.use(cors());
 
 // apps.post()
 app.post("/chat", async (req, res) => {
-    const prompt = req.body['prompt'];
-    console.log(prompt);
+  const prompt = req.body["prompt"];
+  console.log(prompt);
 
-    const completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{
-            role: "system", 
-            content: "You are a masterchef and know all about cooking up a wonderful home meal.",
-            role: "user",
-            content: prompt
-        }],
-        temperature: 0.25,
-        max_tokens: 256,
-    });
-    //console.log(completion.data.choices[0].message);
-    console.log("<=====================RECIPE==================>");
-    const recipe = (completion.data.choices[0].message.content);
-    console.log(recipe);
-    res.send(recipe);
-      
+  const response = await cohere.generate({
+    model: "command",
+    prompt: prompt,
+    max_tokens: 100,
+    temperature: 0.2,
+    k: 0,
+    p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    stop_sequences: ["--"],
+    return_likelihoods: "NONE",
+  });
+  const recipe = response.body.generations[0].text;
+  console.log("<=====================RECIPE==================>");
 
-})
+  console.log(recipe);
+  res.send(recipe);
+});
 
-const port = 8080;
-app.listen(port, ()=>{
-    console.log(`server is listening on port ${port}`);
-})
+const port = 4001;
+app.listen(port, () => {
+  console.log(`server is listening on port ${port}`);
+});
