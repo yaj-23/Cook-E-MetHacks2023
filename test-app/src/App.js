@@ -1,5 +1,8 @@
 import axios from "axios"
 import {useState} from "react"
+import "./App.css";
+import Navbar from './components/navbar/Navbar';
+import Dashboard from "./components/pages/dashboard";
 
 
 
@@ -24,6 +27,8 @@ function App() {
 
   return (
     <>
+    <Navbar/>
+    <Dashboard/>
      <div>
         <form onSubmit={handleSubmit}>
           <div>
