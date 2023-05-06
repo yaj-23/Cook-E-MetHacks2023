@@ -9,6 +9,7 @@
   z-index: 999;
   font-family: "SF Thin";
   position: sticky;
+  background-color: whitesmoke;
 }
 
 .navbar-container {
@@ -45,7 +46,7 @@
   padding-right: 50px;
 }
 .nav-links {
-  color: black;
+  /* color: black; */
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -54,6 +55,10 @@
   transform: scale(0.8);
   transition: all 0.7s ease;
   cursor: pointer;
+  background: linear-gradient(to right, #ff5f6d, #CB8E40);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
 }
 
 .nav-links:hover {

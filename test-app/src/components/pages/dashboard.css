@@ -1,0 +1,65 @@
+.dashboard {
+  display: flex;
+  height: max-content;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  overflow: hidden;
+}
+.cont{
+    display: flex;
+    height: max-content;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    overflow: hidden;
+}
+.left{
+    padding-left: 4vw;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+}
+
+.right{
+    padding-top: 50px;
+    width: 60%;
+    display: flex;
+    transform : scale(0.7);
+    transition: all 0.7s ease-in-out;
+}
+
+.right:hover {
+    transform : scale(0.75);
+    transition: all 0.7s ease-in-out;
+}
+.project-namespace{
+    font-family: "Sf Bold", sans-serif;
+    font-size: 3rem;      
+    color: white;
+}
+.project-name{
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+}
+.project-title{
+    font-family: "Italiana", sans-serif;
+    font-size: 5.5rem;      
+    background: linear-gradient(to right, #ff5f6d, #CB8E40);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+.navigator-btns{
+    padding: 0;
+    margin: 20px;
+    justify-content: space-evenly;
+    align-items: center;    
+}

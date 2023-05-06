@@ -2,3 +2,12 @@
     font-family: "SF Thin";
     src: url(./components/fonts/SFThin.ttf);
   }
+
+@font-face {
+  font-family: "Sf Bold";
+  src: url(./components/fonts/SfBold.ttf);
+}
+@font-face {
+  font-family: "Italiana";
+  src: url(./components/fonts/Italiana.ttf);
+}
