@@ -1,50 +1,69 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const fs = require("fs");
 
-require('dotenv').config()
+require("dotenv").config();
 const apiKey = process.env.API_KEY;
 
-const {Configuration, OpenAIApi} = require("openai");
+const { Configuration, OpenAIApi } = require("openai");
 
 const config = new Configuration({
-    apiKey: apiKey,
+  apiKey: apiKey,
+});
 
-})
+// const openai = new OpenAIApi(config);
+const cohere = require("cohere-ai");
+cohere.init(apiKey);
 
-const openai = new OpenAIApi(config);
+if (fs.existsSync('history.txt')) {
+  fs.unlinkSync("history.txt");
+}
+fs.createWriteStream("history.txt");
 
 //setup Server
-const app  = new express();
+const app = new express();
 app.use(bodyParser.json());
 app.use(cors());
 
+let i = 0;
+
 // apps.post()
 app.post("/chat", async (req, res) => {
-    const prompt = req.body['prompt'];
-    console.log(prompt);
+  const prompt = req.body["prompt"];
+  const message = fs.readFileSync("history.txt");
+  console.log(prompt);
+  if (i < 1) {
+    input = prompt;
+  } else {
+    input = message + "\n" + prompt;
+  }
+  const response = await cohere.generate({
+    model: "command",
+    prompt: input,
+    max_tokens: 250,
+    temperature: 0.2,
+    k: 0,
+    p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    stop_sequences: ["--"],
+    return_likelihoods: "NONE",
+  });
+  i++;
+  const recipe = response.body.generations[0].text;
+  fs.appendFile('history.txt', recipe, function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
 
-    const completion = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{
-            role: "system", 
-            content: "You are a masterchef and know all about cooking up a wonderful home meal.",
-            role: "user",
-            content: prompt
-        }],
-        temperature: 0.25,
-        max_tokens: 256,
-    });
-    //console.log(completion.data.choices[0].message);
-    console.log("<=====================RECIPE==================>");
-    const recipe = (completion.data.choices[0].message.content);
-    console.log(recipe);
-    res.send(recipe);
-      
+  console.log("<=====================RECIPE==================>");
 
-})
+  console.log(recipe);
+  res.send(recipe);
+});
 
-const port = 8080;
-app.listen(port, ()=>{
-    console.log(`server is listening on port ${port}`);
-})
+const port = 4001;
+app.listen(port, () => {
+  console.log(`server is listening on port ${port}`);
+});

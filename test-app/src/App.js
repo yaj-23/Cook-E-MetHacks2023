@@ -14,7 +14,7 @@ function App() {
   const handleSubmit = (e) =>{
     e.preventDefault();
     axios
-      .post("http://localhost:8080/chat", { prompt: prompt })
+      .post("http://localhost:4001/chat", { prompt: prompt })
       .then((res) => {
         console.log(prompt);
         setResponse(res.data);
