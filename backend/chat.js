@@ -19,25 +19,29 @@ const app  = new express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// apps.post()
 app.post("/chat", async (req, res) => {
-    //const prompt = req.body;
     const prompt = req.body['prompt'];
-
     console.log(prompt);
 
-    const completion = await openai.createCompletion({
-       // prompt: "add applebites and make it crispy",
-       prompt: prompt,
-        model: "text-davinci-002",
-        temperature: 0.4,
+    const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{
+            role: "system", 
+            content: "You are a masterchef and know all about cooking up a wonderful home meal.",
+            role: "user",
+            content: prompt
+        }],
+        temperature: 0.25,
         max_tokens: 256,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0
-      });
-    console.log("", prompt);
-    console.log(completion.data.choices[0].text);
-    res.send(completion.data.choices[0].text);
+    });
+    //console.log(completion.data.choices[0].message);
+    console.log("<=====================RECIPE==================>");
+    const recipe = (completion.data.choices[0].message.content);
+    console.log(recipe);
+    res.send(recipe);
+      
+
 })
 
 const port = 8080;
