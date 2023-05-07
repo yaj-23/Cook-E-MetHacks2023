@@ -1,0 +1,64 @@
+.cookeApp{
+    padding-top: 10vh;
+    display: flex;
+    height: max-content;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.appHeader{
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.text-cookeapp{
+    font-family: "Sf Thin", sans-serif;
+    font-size: 3rem;      
+    text-align: left;
+    color: #3f3d56;
+}
+
+.prompt{
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 5vh;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.input {
+    width: 40vw;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0 1px #e6a0a0;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.btn{
+    align-self: center;
+    text-align: center;
+}
+.response-container{
+    background-color: #3f3d56;
+    padding: 2rem;
+    width: 40vw;
+    height: 50vh;
+    border-radius: 2rem;
+    color: blanchedalmond;
+    text-align: left;
+    align-items: center;
+}
+.resp{
+    font-family: "Sf Thin", sans-serif;
+    font-size: 1.1rem;     
+    color: blanchedalmond; 
+}
