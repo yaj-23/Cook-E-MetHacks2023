@@ -28,8 +28,11 @@ app.post("/chat", async (req, res) => {
   const prompt = req.body["prompt"];
   const message = fs.readFileSync("history.txt");
   console.log(prompt);
+  let calories;
+  let food;
   if (i < 1) {
     input = "Give me the ingredients list for " + prompt + " with few ingredients. Add measurements for each ingredient. Clearly label the ingredients and recipe.";
+    food = prompt;
   } else {
     input = message + "\n" + prompt;
   }
@@ -52,22 +55,24 @@ app.post("/chat", async (req, res) => {
     console.log('Saved!');
   });
 
+
+  nutrition.getCalories(food)
+    .then((result) => {
+      calories = result;
+      console.log(calories);
+      res.send({ recipe, calories });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send({ recipe, calories });
+    });
+  
+
   console.log("<=====================RECIPE==================>");
   console.log(recipe)
-
-  if (i < 1) {
-    nutrition.getCalories(prompt)
-      .then((calories) => {
-        console.log(calories);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
-  res.send(recipe);
   i++;
 });
+
 
 const port = 4001;
 app.listen(port, () => {
