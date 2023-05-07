@@ -104,7 +104,7 @@ export default function CookE() {
             <div className="response-container">
                 <h4 className="text-container">Nutrition Facts:</h4>
                 {calories ? (
-                  <div>
+                  <div className="resp">
                     <p>Serving Size: {calories.serving_size_g || "Not available"}</p>
                     <p>Calories: {calories.calories || "Not available"}</p>
                     <p>Total Fat: {calories.fat_total_g || "Not available"}g</p>

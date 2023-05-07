@@ -23,6 +23,19 @@ app.use(cors());
 
 let i = 0;
 
+function isFileEmpty(fileName, ignoreWhitespace=true) {
+  return new Promise((resolve, reject) => {
+      fs.readFile(fileName, (err, data) => {
+          if( err ) {
+              reject(err);
+              return;
+          }
+
+          resolve((!ignoreWhitespace && data.length == 0) || (ignoreWhitespace && !!String(data).match(/^\s*$/)))
+      });
+  })
+}
+
 app.delete("/history", (req, res) => {
   fs.writeFile('./history.txt', '', function(){console.log('done')})
   res.status(200).send("History deleted successfully!");
@@ -35,6 +48,13 @@ app.post("/chat", async (req, res) => {
   console.log(prompt);
   let calories;
   let food;
+  isFileEmpty('history.txt')
+  .then( (isEmpty) => {
+    console.log( "empty:", isEmpty) // true or false
+  })
+  .catch( (err) => {
+    i = 0;
+  });
   if (i < 1) {
     input = "Give me the ingredients list for " + prompt + " with few ingredients. Add measurements for each ingredient. Clearly label the ingredients and recipe.";
     food = prompt;
