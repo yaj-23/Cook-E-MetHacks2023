@@ -47,10 +47,17 @@
     align-self: center;
     text-align: center;
 }
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
 .response-container{
     background-color: #3f3d56;
-    padding: 2rem;
-    width: 40vw;
+    margin: 2rem;
+    width: 29vw;
     height: 50vh;
     border-radius: 2rem;
     color: blanchedalmond;
