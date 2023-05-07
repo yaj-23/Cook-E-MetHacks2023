@@ -27,7 +27,7 @@ function Second() {
                 buttonSize = 'btn-medium'
                 buttonColor='dark'>
                     try
-        </Button>       
+        </Button>   
     </>
     )
 }
