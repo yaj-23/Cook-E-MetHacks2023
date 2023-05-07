@@ -3,6 +3,7 @@ import {useState} from "react"
 import "./App.css";
 import Navbar from './components/navbar/Navbar';
 import Dashboard from "./components/pages/dashboard";
+import Second from "./components/pages/second";
 
 
 
@@ -29,6 +30,7 @@ function App() {
     <>
     <Navbar/>
     <Dashboard/>
+    <Second/>
      <div>
         <form onSubmit={handleSubmit}>
           <div>

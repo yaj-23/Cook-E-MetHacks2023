@@ -31,8 +31,8 @@ function Navbar() {
                 </Link>
             </li>
             <li className='nav-item'> {/*  So basically ythis is the links, css is done for all those wjho are not clicked*/}
-                <Link to='portfolio' className='nav-links' duration={800} smooth={true}onClick ={handleClick}>
-                    portfolio
+                <Link to='how' className='nav-links' duration={800} smooth={true}onClick ={handleClick}>
+                  logic
                 </Link>
             </li>
           </ul>

@@ -1,0 +1,38 @@
+.second{
+    display: flex;
+    height: max-content;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.title{
+    font-family: "Italiana", sans-serif;
+    font-size: 3rem;      
+    background: linear-gradient(to right, #ff5f6d, #CB8E40);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+
+}
+.second-container{
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 50px;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+}
+
+.about-text{
+    font-family: "SF Thin";
+    font-size: 2rem;
+    padding-top: 0;
+    width: 60%;
+    text-align: left;
+    z-index: 10;
+}
