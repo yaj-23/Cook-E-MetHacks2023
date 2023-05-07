@@ -23,6 +23,11 @@ app.use(cors());
 
 let i = 0;
 
+app.delete("/history", (req, res) => {
+  fs.writeFile('./history.txt', '', function(){console.log('done')})
+  res.status(200).send("History deleted successfully!");
+});
+
 // apps.post()
 app.post("/chat", async (req, res) => {
   const prompt = req.body["prompt"];
@@ -35,6 +40,7 @@ app.post("/chat", async (req, res) => {
     food = prompt;
   } else {
     input = message + "\n" + prompt;
+    food = prompt;
   }
   const response = await cohere.generate({
     model: "command",

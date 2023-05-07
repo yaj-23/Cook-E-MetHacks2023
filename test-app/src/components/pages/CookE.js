@@ -12,6 +12,18 @@ export default function CookE() {
   const [recipe, setRecipe] = useState("");
   const [materials, setMaterials] = useState("");
 
+  const handleDeleteHistory = (e) => {
+    e.preventDefault();
+    axios
+      .delete("http://localhost:4001/history")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -44,8 +56,6 @@ export default function CookE() {
       });
   };
   
-
-
   return (
     <>
       <div className="cookeApp">
@@ -78,22 +88,38 @@ export default function CookE() {
             >
               Submit
             </Button>
+            <Button
+              type="submit"
+              className="btn"
+              buttonStyle="btn-primary"
+              buttonSize="btn-medium"
+              buttonColor="dark"
+              onClick={handleDeleteHistory}
+              >
+              Reset
+            </Button>
           </form>
         </div>
         <div className="cards">
             <div className="response-container">
                 <h4 className="text-container">Nutrition Facts:</h4>
-                <p className="resp">Serving Size: {calories.serving_size_g ? calories.serving_size_g : "Not Available"}</p>
-                <p className="resp">Calories: {calories.calories? calories.calories : "Not Available"}</p>
-                <p className="resp">Total Fat: {calories.fat_total_g? calories.fat_total_g : "Not Available"}</p>
-                <p className="resp">Saturated Fat: {calories.fat_saturated_g? calories.fat_saturated_g : "Not Available"}</p>
-                <p className="resp">Protein: {calories.protein_g? calories.protein_g : "Not Available"}</p>
-                <p className="resp">Sodium: {calories.sodium_mg? calories.sodium_mg : "Not Available"}</p>
-                <p className="resp">Potassium: {calories.potassium_mg? calories.potassium_mg : "Not Available"}</p>
-                <p className="resp">Cholesterol: {calories.cholesterol_mg? calories.cholesterol_mg : "Not Available"}</p>
-                <p className="resp">Total Carbohydrates: {calories.carbohydrates_total_g? calories.carbohydrates_total_g : "Not Available"}</p>
-                <p className="resp">Dietary Fiber: {calories.fiber_g? calories.fiber_g : "Not Available"}</p>
-                <p className="resp">Sugar: {calories.sugar_g? calories.sugar_g : "Not Available"}</p>
+                {calories ? (
+                  <div>
+                    <p>Serving Size: {calories.serving_size_g || "Not available"}</p>
+                    <p>Calories: {calories.calories || "Not available"}</p>
+                    <p>Total Fat: {calories.fat_total_g || "Not available"}g</p>
+                    <p>Saturated Fat: {calories.fat_saturated_g || "Not available"}g</p>
+                    <p>Protein: {calories.protein_g || "Not available"}g</p>
+                    <p>Sodium: {calories.sodium_mg || "Not available"}mg</p>
+                    <p>Potassium: {calories.potassium_mg || "Not available"}mg</p>
+                    <p>Cholesterol: {calories.cholesterol_mg || "Not available"}mg</p>
+                    <p>Total Carbohydrates: {calories.carbohydrates_total_g || "Not available"}g</p>
+                    <p>Dietary Fiber: {calories.fiber_g || "Not available"}g</p>
+                    <p>Sugar: {calories.sugar_g || "Not available"}g</p>
+                  </div>
+                ) : (
+                  <p>Nutritional information not available</p>
+                )}
             </div>
             
             <div className="response-container">
