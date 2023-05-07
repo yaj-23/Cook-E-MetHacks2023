@@ -20,6 +20,21 @@
     text-align: left;
     color: #3f3d56;
 }
+.text-container{
+    font-family: "Italiana", sans-serif;
+    font-size: 1.9rem;      
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    padding-top: 5vh;
+    justify-content: center;
+}
+.text-prompt{
+    font-family: "Italiana", sans-serif;
+    font-size: 1.9rem;      
+    text-align: center;
+    justify-content: center;
+}
 
 .prompt{
     flex-direction: column;
@@ -56,9 +71,11 @@
 }
 .response-container{
     background-color: #3f3d56;
+    padding: 20px;
     margin: 2rem;
-    width: 29vw;
-    height: 50vh;
+    width: 25vw;
+    min-height: 500px;
+    height: max-content;
     border-radius: 2rem;
     color: blanchedalmond;
     text-align: left;
