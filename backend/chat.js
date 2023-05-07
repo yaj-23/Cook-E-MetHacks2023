@@ -23,15 +23,44 @@ app.use(cors());
 
 let i = 0;
 
+function isFileEmpty(fileName, ignoreWhitespace=true) {
+  return new Promise((resolve, reject) => {
+      fs.readFile(fileName, (err, data) => {
+          if( err ) {
+              reject(err);
+              return;
+          }
+
+          resolve((!ignoreWhitespace && data.length == 0) || (ignoreWhitespace && !!String(data).match(/^\s*$/)))
+      });
+  })
+}
+
+app.delete("/history", (req, res) => {
+  fs.writeFile('./history.txt', '', function(){console.log('done')})
+  res.status(200).send("History deleted successfully!");
+});
+
 // apps.post()
 app.post("/chat", async (req, res) => {
   const prompt = req.body["prompt"];
   const message = fs.readFileSync("history.txt");
   console.log(prompt);
+  let calories;
+  let food;
+  isFileEmpty('history.txt')
+  .then( (isEmpty) => {
+    console.log( "empty:", isEmpty) // true or false
+  })
+  .catch( (err) => {
+    i = 0;
+  });
   if (i < 1) {
     input = "Give me the ingredients list for " + prompt + " with few ingredients. Add measurements for each ingredient. Clearly label the ingredients and recipe.";
+    food = prompt;
   } else {
     input = message + "\n" + prompt;
+    food = prompt;
   }
   const response = await cohere.generate({
     model: "command",
@@ -52,22 +81,24 @@ app.post("/chat", async (req, res) => {
     console.log('Saved!');
   });
 
+
+  nutrition.getCalories(food)
+    .then((result) => {
+      calories = result;
+      console.log(calories);
+      res.send({ recipe, calories });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send({ recipe, calories });
+    });
+  
+
   console.log("<=====================RECIPE==================>");
   console.log(recipe)
-
-  if (i < 1) {
-    nutrition.getCalories(prompt)
-      .then((calories) => {
-        console.log(calories);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
-  res.send(recipe);
   i++;
 });
+
 
 const port = 4001;
 app.listen(port, () => {
