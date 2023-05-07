@@ -58,7 +58,7 @@ export default function CookE() {
   
   return (
     <>
-      <div className="cookeApp">
+      <div id='try' className="cookeApp">
         <div className="appHeader">
           <img src={logo} alt="" style={{ width: "300px" }} />
           <h3 className="text-cookeapp">

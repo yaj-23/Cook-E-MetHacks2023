@@ -31,13 +31,15 @@ function Dashboard() {
                   buttonColor='dark'>
                       how
               </Button>  
-            </Link> 
-            <Button className="btn1"
-                buttonStyle='btn-primary' 
-                buttonSize = 'btn-medium'
-                buttonColor='dark'>
-                    try
-            </Button>            
+            </Link > 
+            <Link to='try'   duration={800} smooth={true}>
+              <Button className="btn1"
+                  buttonStyle='btn-primary' 
+                  buttonSize = 'btn-medium'
+                  buttonColor='dark'>
+                      try
+              </Button>       
+            </Link>
           </div>
         </div>
         <div className='right'>

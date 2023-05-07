@@ -1,6 +1,7 @@
 import { Button } from '../button/Button';
 import React from 'react'
 import "./second.css";
+import {Link} from 'react-scroll';
 
 
 
@@ -22,12 +23,14 @@ function Second() {
                 </p1>
             </div>
         </div>
-        <Button className="btn1"
-                buttonStyle='btn-primary' 
-                buttonSize = 'btn-medium'
-                buttonColor='dark'>
-                    try
-        </Button>   
+        <Link to='try'   duration={800} smooth={true}>
+            <Button className="btn1"
+                    buttonStyle='btn-primary' 
+                    buttonSize = 'btn-medium'
+                    buttonColor='dark'>
+                        try
+            </Button>   
+        </Link>
     </>
     )
 }
