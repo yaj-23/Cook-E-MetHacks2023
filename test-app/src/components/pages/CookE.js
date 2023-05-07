@@ -20,26 +20,22 @@ export default function CookE() {
         if (res.data.includes("Instructions:")) {
             const ingredients = res.data.split("Instructions:")[0];
             const directions = res.data.split("Instructions:")[1];
+
+
             setMaterials(ingredients)
             setRecipe(directions)
-
-            //console.log(ingredients + "\n\n\n\n\n" + directions);
         }
         if (res.data.includes("Directions:")) {
-            const ingredients = res.data.split("Instructions:")[0];
-            const directions = res.data.split("Instructions:")[1];
+            const ingredients = res.data.split("Directions:")[0];
+            const directions = res.data.split("Directions:")[1];
             setMaterials(ingredients)
             setRecipe(directions)
-
-            //console.log(ingredients + "\n\n\n\n\n" + directions);
         }
         if (res.data.includes("Recipe:")) {
-            const ingredients = res.data.split("Instructions:")[0];
-            const directions = res.data.split("Instructions:")[1];
+            const ingredients = res.data.split("Recipe:")[0];
+            const directions = res.data.split("Recipe:")[1];
             setMaterials(ingredients)
             setRecipe(directions)
-
-            //console.log(ingredients + "\n\n\n\n\n" + directions);
         }
         setResponse(res.data);
       })
@@ -47,6 +43,7 @@ export default function CookE() {
         console.error(err);
       });
   };
+
 
   return (
     <>
@@ -60,7 +57,7 @@ export default function CookE() {
         <div className="prompt">
           <form className="form" onSubmit={handleSubmit}>
             <div>
-              <h3>Enter Prompt:</h3>
+              <h3 className="text-prompt">Enter Prompt:</h3>
             </div>
             <div>
               <input
@@ -84,22 +81,35 @@ export default function CookE() {
         </div>
         <div className="cards">
             <div className="response-container">
-            <p className="resp">{response}</p>
+                <h4 className="text-container">Nutrition Facts:</h4>
+                <p className="resp">{response}</p>
+            </div>
+            
+            <div className="response-container">
+                <h4 className="text-container">Ingredients List:</h4>
+                <ul className="resp">
+                {materials.split(" ").map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                ))}
+                </ul>
             </div>
             <div className="response-container">
-            <p className="resp">{response}</p>
-            </div>
-            <div className="response-container">
-            <p className="resp">{response}</p>
+                <h4 className="text-container">Recipe:</h4>
+                <ul className="resp">
+                    {recipe.split(/\d+\./).filter(step => step.trim().length > 0).map((step, index) => (
+                    <li key={index}>{step.trim()}</li>
+                    ))}
+                </ul>
             </div>
         </div>
-      </div>
-      <div>
-        Materials OOOoooGAAABOOOOGAAA:
-        {materials}
-
-        Recipe OOOoooGAAABOOOOGAAA:
-        {recipe}
+        <div>
+            Materials OOOoooGAAABOOOOGAAA:
+            {materials}
+        </div>
+        <div>
+            Recipe OOOoooGAAABOOOOGAAA:
+            {recipe}
+        </div>
       </div>
     </>
   );
