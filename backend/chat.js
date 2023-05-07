@@ -29,14 +29,14 @@ app.post("/chat", async (req, res) => {
   const message = fs.readFileSync("history.txt");
   console.log(prompt);
   if (i < 1) {
-    input = "Give me the ingredients list for " + prompt + " with ideally less than 10 ingredients. Add measurements in grams for each ingredient. Clearly label the ingredients and recipe.";
+    input = "Give me the ingredients list for " + prompt + " with few ingredients. Add measurements for each ingredient. Clearly label the ingredients and recipe.";
   } else {
     input = message + "\n" + prompt;
   }
   const response = await cohere.generate({
     model: "command",
     prompt: input,
-    max_tokens: 250,
+    max_tokens: 500,
     temperature: 0.2,
     k: 0,
     p: 1,
@@ -53,11 +53,18 @@ app.post("/chat", async (req, res) => {
   });
 
   console.log("<=====================RECIPE==================>");
+  console.log(recipe)
 
-  console.log(recipe);
   if (i < 1) {
-    nutrition.getCalories(prompt);
+    nutrition.getCalories(prompt)
+      .then((calories) => {
+        console.log(calories);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
+
   res.send(recipe);
   i++;
 });
