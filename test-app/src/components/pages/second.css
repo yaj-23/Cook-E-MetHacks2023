@@ -12,13 +12,14 @@
     background: linear-gradient(to right, #ff5f6d, #CB8E40);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: left;
+    text-align: center;
 
 }
 .second-container{
+    justify-content: center;
     padding-top: 0;
+    align-items: center;
     padding-bottom: 0;
-    padding-left: 50px;
     padding-right: 0;
     display: flex;
     flex-direction: column;
@@ -33,6 +34,6 @@
     font-size: 2rem;
     padding-top: 0;
     width: 60%;
-    text-align: left;
+    text-align: center;
     z-index: 10;
 }

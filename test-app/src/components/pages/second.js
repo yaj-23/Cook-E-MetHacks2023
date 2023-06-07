@@ -22,15 +22,16 @@ function Second() {
                     Cook - E is designed with your needs in mind, our easy-to-use interface and intuitive navigation make it simple for you to find the recipes you need. Whether you are looking for a quick weeknight dinner or planning a special meal for your loved ones, Cook - E has got you covered.
                 </p1>
             </div>
+            <Link to='try'   duration={800} smooth={true}>
+                <Button className="btn1"
+                        buttonStyle='btn-primary' 
+                        buttonSize = 'btn-medium'
+                        buttonColor='dark'>
+                            try
+                </Button>   
+            </Link>
         </div>
-        <Link to='try'   duration={800} smooth={true}>
-            <Button className="btn1"
-                    buttonStyle='btn-primary' 
-                    buttonSize = 'btn-medium'
-                    buttonColor='dark'>
-                        try
-            </Button>   
-        </Link>
+        
     </>
     )
 }
