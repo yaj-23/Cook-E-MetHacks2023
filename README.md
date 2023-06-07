@@ -10,6 +10,14 @@ Cook-e also utilizes software observability and provides the developer with key 
 For the recipe generator, we used Cohere's command model so that it could give us recipes for any food that we asked for. The nutritional facts were found using an API called CalorieNinjas. Our front-end and back-end uses NodeJS to tie everything together.
 We introduced the leading opensource technology(Opentelemetry) within our projected as we took advantage of auto-instrumenting our code and exporting trace result with our local instance of Jaeger UI, an opensource tool which allows develops to search, view trace data and analyze performance metrics, bottlenecks within a system and the overall flow of the system. 
 
+## Take Peak
+![image](https://github.com/yaj-23/MetHacks2023/assets/65982074/75a5f809-19a6-460f-8800-f39a8225412d)
+![image](https://github.com/yaj-23/MetHacks2023/assets/65982074/a9036f6e-7e44-4622-85d7-3761c0cd7ac8)
+![image](https://github.com/yaj-23/MetHacks2023/assets/65982074/04bc6031-abfc-444e-a0a2-f6ddd098a377)
+![image](https://github.com/yaj-23/MetHacks2023/assets/65982074/f02f0f37-7ade-429d-bd24-6313650c3998)
+
+
+
 ## Challenges we ran into
 - Figuring out how to uses Cohere's model for contextual conversations.
 - Tying our front-end and back-end data together.
