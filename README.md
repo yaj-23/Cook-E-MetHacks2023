@@ -1,4 +1,4 @@
-# Cook E( Created for MetHacks2023)
+# Cook-E (Created for MetHacks2023)
 ## Inspiration
 Since we're students living at home, we don't spend too much time learning new cooking things. So when we were thinking of projects to build, something related to food enticed both of us. Using AI to help generate recipes was something that we both found to be really useful and can definitely be used in our day-to-day lives. 
 
